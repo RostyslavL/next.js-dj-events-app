@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { HiOutlineShieldExclamation, HiArrowCircleLeft } from 'react-icons/hi'
+import { HiOutlineShieldExclamation, HiOutlineChevronLeft } from 'react-icons/hi'
 import Layout from '../components/Layout'
 import styles from '../styles/404.module.css'
 
@@ -14,11 +14,10 @@ export default function NotFoundPage() {
                 </h1>
                 <h4> Sorry, there is nothing here</h4>
                 <Link href='/'> 
-                    <h4> 
-                        <HiArrowCircleLeft />
-                        &nbsp; 
-                        Go Back Home
-                    </h4>  
+                    <h3> 
+                        <HiOutlineChevronLeft /> 
+                        &nbsp; Go Back Home
+                    </h3>  
                 </Link>
             </div>
         </Layout>
