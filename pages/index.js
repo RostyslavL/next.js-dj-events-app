@@ -29,7 +29,7 @@ export async function getStaticProps(){
 
   return{
     props:{
-      events
+      events: events.slice(0, 3)
     },
     revalidate: 1,
   }

@@ -26,7 +26,7 @@ export async function getStaticProps(){
 
   return{
     props:{
-      events: events.slice(0, 4)
+      events
     },
     revalidate: 1,
   }
