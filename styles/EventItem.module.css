@@ -5,6 +5,14 @@
     margin: 20px 0;
     padding: 13px;
     box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.5);
+    background: #adb9c56b;
+    opacity: .8;
+  }
+.event:hover{
+  opacity: 1;
+  transition: opacity .5s ease-in-out;
+  transform:  scale(1.05);
+  transition: transform .9s ease-in-out;
   }
   
   .img {

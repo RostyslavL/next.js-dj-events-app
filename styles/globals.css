@@ -4,6 +4,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  
 }
 
 html,
@@ -27,7 +28,7 @@ h1 {
 
 .btn {
   display: inline-block;
-  background: #0f00e4;
+  background: #ff0101;
   color: #fff;
   padding: 5px 5px;
   cursor: pointer;
@@ -36,7 +37,8 @@ h1 {
 }
 
 .btn:hover {
-  opacity: 0.9;
+  opacity: 1;
+  background: #a50303;
 }
 
 .btn-secondary {
@@ -52,13 +54,14 @@ h1 {
 }
 
 .btn-secondary:hover {
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
 .btn-icon {
   display: flex;
   align-items: center;
   justify-content: center;
+  
 }
 
 .btn-icon svg {
