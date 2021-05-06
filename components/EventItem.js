@@ -11,7 +11,7 @@ export default function EventItem({ evt }) {
           <Image
             src={
               evt.image
-                ? evt.image
+                ? evt.image.formats.thumbnail.url
                 : '/images/event-default.png'
             }
             width={200}
@@ -21,7 +21,7 @@ export default function EventItem({ evt }) {
             <div className={styles.info}>
                 <span>
                     <b>
-                        {evt.date}
+                        {new Date(evt.date).toLocaleDateString('pl-PL')}
                     </b> 
                     &nbsp; at &nbsp;
                     <b>
