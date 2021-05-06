@@ -8,4 +8,5 @@
 
 .search input:focus{
     outline: none;
+    cursor: pointer;
 }
