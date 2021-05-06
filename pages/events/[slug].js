@@ -55,7 +55,7 @@ export default function EventPage({evt}) {
                 </p>
                 <h3>Venue: {evt.venue}</h3>
                 <p>{evt.address}</p>
-                <Link href='/event'>
+                <Link href='/events'>
                     <a className={styles.back}>
                        <HiChevronLeft />  Go Back
                     </a>
