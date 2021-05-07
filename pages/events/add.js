@@ -6,8 +6,8 @@ import Link from 'next/link'
 import {API_URL} from '@/config/index'
 import styles from '@/styles/Form.module.css'
 import { HiOutlineChevronLeft,  } from 'react-icons/hi'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function AddEventPage() {
 
@@ -75,7 +75,7 @@ export default function AddEventPage() {
                 pauseOnFocusLoss
                 draggable
                 pauseOnHover
-                />
+            />
             <form onSubmit={handleSubmit} className={styles.form}>
                 <div className={styles.grid}>
                     <div>
