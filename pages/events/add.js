@@ -6,6 +6,8 @@ import Link from 'next/link'
 import {API_URL} from '@/config/index'
 import styles from '@/styles/Form.module.css'
 import { HiOutlineChevronLeft,  } from 'react-icons/hi'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AddEventPage() {
 
@@ -21,11 +23,34 @@ export default function AddEventPage() {
 
     const router = useRouter()
 
-    const handleSubmit = (e) =>{
+    const handleSubmit = async (e) =>{
         e.preventDefault()
-        console.log(values)
+
+        // Validation
+        const hasEmptyFields = Object.values(values).some((element) => element === '')
+        
+        if(hasEmptyFields){
+            toast.error('Wow An Error ! Please Fill all fields')
+        }else{
+            toast.success('Great ! Success')
+        }
+        const res = await fetch(`${API_URL}/events `, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+                },
+            body: JSON.stringify(values)
+        })
+        if(!res.ok){
+            toast.error('Wow An Error ! Something Went Wrong')
+        }else{
+            const evt = await res.json()
+            router.push(`/events/${evt.slug}`)
+
+        }
 
     }
+    
     const handleInputChange = (e) =>{
         const {name, value}  = e.target
         setValues({...values, [name]: value})
@@ -40,6 +65,17 @@ export default function AddEventPage() {
                 </a>
             </Link>
             <h1>Add Event</h1>
+            <ToastContainer 
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                />
             <form onSubmit={handleSubmit} className={styles.form}>
                 <div className={styles.grid}>
                     <div>
@@ -50,7 +86,7 @@ export default function AddEventPage() {
                             name="name" 
                             value={values.name} 
                             onChange={handleInputChange}
-                            required
+                            
                         />
                     </div>
                     <div>
@@ -61,7 +97,7 @@ export default function AddEventPage() {
                             name="performers" 
                             value={values.performers} 
                             onChange={handleInputChange}
-                            required
+                            
                         />
                     </div>
                     <div>
@@ -72,7 +108,7 @@ export default function AddEventPage() {
                             name="venue" 
                             value={values.venue} 
                             onChange={handleInputChange}
-                            required
+                            
                         />
                     </div>
                     <div>
@@ -83,7 +119,7 @@ export default function AddEventPage() {
                             name="address" 
                             value={values.address} 
                             onChange={handleInputChange}
-                            required
+                            
                         />
                     </div>
                     <div>
@@ -94,7 +130,7 @@ export default function AddEventPage() {
                             name="date" 
                             value={values.date} 
                             onChange={handleInputChange}
-                            required
+                            
                         />
                     </div>
                     <div>
@@ -105,7 +141,7 @@ export default function AddEventPage() {
                             name="time" 
                             value={values.time} 
                             onChange={handleInputChange}
-                            required
+                            
                         />
                     </div>
                 </div>
@@ -117,7 +153,7 @@ export default function AddEventPage() {
                         id="description"
                         value={values.description} 
                         onChange={handleInputChange}  
-                        required
+                        
                     ></textarea>
                 </div>
                     <input 
