@@ -48,7 +48,7 @@ export default function EventPage({evt}) {
                 <h1>{evt.name}</h1>
                 <ToastContainer
                     position="top-right"
-                    autoClose={5000}
+                    autoClose={3000}
                     hideProgressBar={false}
                     newestOnTop={false}
                     closeOnClick
