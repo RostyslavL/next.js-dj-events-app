@@ -1,5 +1,6 @@
 import React from 'react'
-import Layout from '../../../components/Layout'
+import Layout from '@/components/Layout'
+import Modal from '@/components/Modal'
 import {useState} from 'react'
 import {useRouter} from 'next/router'
 import Link from 'next/link'
@@ -25,6 +26,8 @@ export default function EditEventPage({evt}) {
     })
 
     const [imagePreview, setImagePreview] = useState(evt.image ? evt.image.formats.thumbnail.url : null)
+
+    const [showModal, setShowModal] = useState(false)
 
     const router = useRouter()
 
@@ -177,10 +180,17 @@ export default function EditEventPage({evt}) {
                 </div>
             )}
             <div>
-                <button className="btn-secondary">
-                    <HiPhotograph /> Set Image
+                <button 
+                    className="btn-secondary" 
+                    onClick={() => setShowModal(true)}>
+                        <HiPhotograph /> Set Image
                 </button>
             </div>
+            <Modal 
+                show={showModal} 
+                onClose={()=> setShowModal(false)}>
+                Image Upload
+            </Modal>
         </Layout>
     )
 }
