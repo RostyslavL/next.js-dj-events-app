@@ -8,6 +8,10 @@ export const AuthProvider = ({children}) =>{
     const [user, setUser] = useState(null)
     const [error, setError] = useState(null)
 
+    const router = useRouter()
+
+    useEffect(() => CheckUserLoggedIn(), [])
+
 
     // Register User
 
@@ -31,6 +35,7 @@ export const AuthProvider = ({children}) =>{
         console.log(data)
         if(res.ok){
             setUser(data.user)
+            router.push('/acount/dashboard')
         }else{
             setError(data.message)
             setError(null)
@@ -40,11 +45,24 @@ export const AuthProvider = ({children}) =>{
 
     // Log out User
     const logout = async () =>{
-        console.log('Logout - invoced')
+        const res = await fetch(`${NEXT_URL}/api/logout`, {
+            method: 'POST'
+        })
+        if(res.ok){
+            setUser(null)
+            router.push('/')
+        }
     }
     // Check if user is logged in User
     const CheckUserLoggedIn = async (user) =>{
-        console.log('CheckUserLoggedIn - invoced')
+        const res = await fetch(`${NEXT_URL}/api/user`)
+        const data = await res.json()
+
+        if(res.ok){
+            setUser(data.user)
+        }else{
+            setUser(null)
+        }
     }
 
     return(
