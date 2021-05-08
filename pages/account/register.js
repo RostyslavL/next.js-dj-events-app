@@ -9,20 +9,26 @@ import AuthContext from '@/context/AuthContext'
 
 export default function RegisterPage() {
 
-    const [userName, setUserName] = useState('')
+    const [username, setUserName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirm, setPasswordConfirm] = useState('')
 
     const {register, error} = useContext(AuthContext)
 
+    useEffect(() => error && toast.error(error))
+
     const handleSubmit = (e) =>{
         e.preventDefault()
-        if(password !== passwordConfirm){
+        if(password !== passwordConfirm ){
             toast.error(`Error: Oops Passwords don't match`)
             return
-        }else{
-            register({userName, email, password})
+        }else if ( password ===''){
+            toast.error(`Error: Please Fill All Fields`)
+            return
+        }
+    else{
+            register({username, email, password})
             toast.success(`Great ! Welcome`)
         }
     }
@@ -40,7 +46,7 @@ export default function RegisterPage() {
                     <input 
                         type="text" 
                         id="username" 
-                        value={userName} 
+                        value={username} 
                         onChange={ (e) => setUserName(e.target.value)}
                     />
                 </div>
