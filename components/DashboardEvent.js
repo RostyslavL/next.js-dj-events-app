@@ -11,7 +11,7 @@ export default function DashboardEvent({evt, handleDelete}) {
                     <a>{evt.name}</a>
                 </Link>
             </h4>
-            <Link href={`/events/evt/${evt.id}`}>
+            <Link href={`/events/edit/${evt.id}`}>
                     <a className={styles.edit}>
                         <HiPencil /> <span> Edit Event</span>
                     </a>
