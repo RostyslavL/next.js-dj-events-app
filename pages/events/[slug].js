@@ -4,10 +4,12 @@ import Image from 'next/image'
 import {useRouter} from 'next/router'
 import {HiOutlineTrash, HiPencil, HiCalendar,HiChevronLeft} from 'react-icons/hi'
 import Layout from '@/components/Layout'
+import EventMap from '@/components/EventMap'
 import {API_URL} from '@/config/index'
 import styles from '@/styles/Event.module.css'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+
 
 
 export default function EventPage({evt}) {
@@ -58,6 +60,9 @@ export default function EventPage({evt}) {
                 </p>
                 <h3>Venue: {evt.venue}</h3>
                 <p>{evt.address}</p>
+
+                <EventMap evt={evt}/>
+
                 <Link href='/events'>
                     <a className={styles.back}>
                        <HiChevronLeft />  Go Back
