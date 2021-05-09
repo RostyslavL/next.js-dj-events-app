@@ -13,8 +13,9 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import moment from 'moment'
 import { HiPhotograph } from 'react-icons/hi'
+import {parseCookies} from '@/helpers/index'
 
-export default function EditEventPage({evt}) {
+export default function EditEventPage({evt, token}) {
 
     const [values, setValues] = useState({
         name: evt.name,
@@ -40,22 +41,27 @@ export default function EditEventPage({evt}) {
         
         if(hasEmptyFields){
             toast.error('Wow An Error ! Please Fill all fields')
-        }else{
-            toast.success('Great ! Success, Event Updated')
         }
         const res = await fetch(`${API_URL}/events/${evt.id}`, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
                 },
             body: JSON.stringify(values)
         })
         if(!res.ok){
+            if(res.status === 403 ||res.status === 401){
+                toast.error('Wow An Error : Unauthorized ! It Seems That You are not An Owner Of This Event')
+                return
+            }
             toast.error('Wow An Error ! Something Went Wrong')
+            
         }else{
             const evt = await res.json()
             router.push(`/events/${evt.slug}`)
-
+            toast.success('Great ! Success')
+            return
         }
 
     }
@@ -208,6 +214,8 @@ export default function EditEventPage({evt}) {
 
 export async function getServerSideProps({ params: { id }, req }) {
   
+    const {token} = parseCookies(req)
+
     const res = await fetch(`${API_URL}/events/${id}`)
     const evt = await res.json()
   
@@ -215,6 +223,7 @@ export async function getServerSideProps({ params: { id }, req }) {
     return {
       props: {
         evt,
+        token,
       },
     }
-  }
+}
