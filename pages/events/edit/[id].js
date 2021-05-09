@@ -60,7 +60,7 @@ export default function EditEventPage({evt, token}) {
         }else{
             const evt = await res.json()
             router.push(`/events/${evt.slug}`)
-            toast.success('Great ! Success')
+            toast.success('Great ! Success, Event Was Updated')
             return
         }
 
@@ -206,6 +206,7 @@ export default function EditEventPage({evt, token}) {
                     <ImageUpload 
                         evtId={evt.id} 
                         imageUploaded={imageUploaded}
+                        token={token}
                     />
             </Modal>
         </Layout>
