@@ -1,0 +1,39 @@
+.event {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px #ddd solid;
+  color: #1a1a7e;
+  background-color: #b4b1b1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  opacity: .8;
+}
+.event:hover {
+  opacity: 1;
+  color: #1a1a7e;
+  background-color: #cac5c5;
+  cursor: pointer;
+  transform:  scale(1.05);
+  transition: transform .6s ease-in-out;
+}
+
+.event h4 {
+  margin-bottom: 10px;
+  flex: 2;
+}
+
+
+.edit,
+.delete {
+  margin: 10px;
+;
+}
+.edit{
+  color: #1a1a7e
+}
+
+.delete {
+  color: red;
+}
